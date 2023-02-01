@@ -1,4 +1,4 @@
-package LeetCode;
+package LeetCode.LeetCode;
 
 public class CountAndSay {
 
@@ -18,11 +18,11 @@ public class CountAndSay {
                 cnt++;
             }
             else {
-                str+=cnt+(lista[i]+"");
+                str+=""+cnt+ lista[i];
                 cnt=1;
             }
         }
-        str+=cnt+ (lista[lista.length-1]+"");
+        str+=""+cnt+ lista[lista.length-1];
         return str;
     }
 
@@ -33,8 +33,8 @@ public class CountAndSay {
         }
         String rez;
         String ver="11";
-        int cnt=3;
-        while(cnt<=n){
+        int cnt=2;
+        while(cnt<n){
             rez=convTool(ver);
             ver=rez;
             cnt++;
