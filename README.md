@@ -1,1 +1,1 @@
-# LeetCode_CountAndSay
+# LeetCode_DevMind Exercises
