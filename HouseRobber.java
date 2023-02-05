@@ -1,46 +1,67 @@
 package LeetCode.LeetCode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class HouseRobber {
 
+    public static void main(String[] args){
+        int[] numerele = {8,2,8,9,2};
+        System.out.println(rob(numerele));
+    }
+
     public static int rob(int[] nums) {
-        if (nums.length==1){
+        if(nums.length==1){
             return nums[0];
         }
-        int ind1=0;
-        int ind2=1;
-        int cnt1 = nums[ind1];
-        int cnt2 =nums[ind2];
-        int ver=0;
-        while (ind1<nums.length-3){
-            if (nums[ind1+2]<nums[ind1+3]){
-                cnt1+=nums[ind1+3];
-                ind1+=3;
-                ver=3;
-            }
-            else{
-                cnt1+=nums[ind1+2];
-                ind1+=2;
-                ver=2;
-            }
+        int suma=0;
+        Deque<Integer> lista = new ArrayDeque<>();
+        for(int i:nums){
+            suma+=i;
+            lista.offer(i);
         }
-        if (ver==2){
-            cnt1+=nums[nums.length-1];
-        }
-        while (ind2<nums.length-3){
-            if (nums[ind2+2]<nums[ind2+3]){
-                cnt2+=nums[ind2+3];
-                ind2+=3;
-                ver=3;
+        int cnt=0;
+        int prim=0;
+        int doil=0;
+        int ref=0;
+        while (true){
+            if (lista.size()<2){
+                break;
             }
-            else{
-                cnt2+=nums[ind2+2];
-                ind2+=2;
-                ver=2;
+            else {
+                prim=lista.poll();
+                doil=lista.poll();
+            }
+            if (prim>=doil){
+                ref=1;
+                cnt+=prim;
+            }
+            else {
+                lista.poll();
+                ref=2;
+                cnt+=doil;
             }
         }
-        if (ver==2){
-            cnt2+=nums[nums.length-1];
+        if (lista.size()==1){
+            cnt+=lista.pop();
         }
-        return Math.max(cnt1,cnt2);
+        suma=suma-cnt;
+        return Math.max(suma,cnt);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
